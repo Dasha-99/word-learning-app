@@ -1,0 +1,20 @@
+@use "../../assets/styles/vars";
+@use "../../assets/styles/templates";
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 2px solid vars.$border-color;
+  padding: 10px 0;
+  gap: 10px;
+  &__input {
+    margin: 0 10px;
+    padding: 0 20px;
+    @include templates.text-style;
+    border: none;
+    border-radius: 20px;
+    &::placeholder {
+      font-size: 18px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@use "../../assets/styles/vars";
+@use "../../assets/styles/templates";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  height: 50px;
+  min-width: 200px;
+  margin: 0 auto;
+  padding: 15px;
+  @include templates.title-style;
+  font-size: 20px;
+  color: vars.$white-color;
+  background-color: vars.$ordinary-color;
+  border-radius: 15px;
+  border: none;
+  &--delete {
+    background-color: vars.$important-color;
+  }
+  &--edit {
+    background-color: vars.$accent-color;
+  }
+  &--confirm {
+    background-color: vars.$confirm-color;
+  }
+  &:hover {
+    cursor: pointer;
+    border: 2px solid vars.$white-color;
+  }
+}

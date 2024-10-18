@@ -1,0 +1,20 @@
+@use "../../assets/styles/vars";
+@use "../../assets/styles/templates";
+
+.list {
+  width: 80%;
+  margin: 10px auto;
+  &__titles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 2px solid vars.$border-color;
+  }
+  &__title {
+    padding: 10px 20px;
+    @include templates.title-style;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+}

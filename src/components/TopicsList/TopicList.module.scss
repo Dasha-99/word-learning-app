@@ -1,0 +1,21 @@
+@use "../../assets/styles/vars";
+@use "../../assets/styles/templates";
+
+.list {
+  width: 80%;
+  margin: 40px auto;
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+  &__titles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 2px solid vars.$border-color;
+  }
+  &__title {
+    padding: 10px;
+    @include templates.title-style;
+    text-align: center;
+  }
+}

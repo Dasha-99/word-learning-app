@@ -1,0 +1,99 @@
+[
+    {
+        "id": "1",
+        "german": "die Familie",
+        "transcription": "",
+        "russian": "Семья",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "2",
+        "german": "die Eltern",
+        "transcription": "",
+        "russian": "Родители",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "3",
+        "german": "die Frau",
+        "transcription": "",
+        "russian": "Женщина, жена",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "4",
+        "german": "die Mutter",
+        "transcription": "",
+        "russian": "Мать",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "5",
+        "german": "der Vater",
+        "transcription": "",
+        "russian": "Отец",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "6",
+        "german": "die Tochter",
+        "transcription": "",
+        "russian": "Дочь",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "7",
+        "german": "der Anzug",
+        "transcription": "",
+        "russian": "Костюм",
+        "tags": "Одежда",
+        "tags_json": "[\"u043cu0435u0441u044fu0446\"]"
+    },
+    {
+        "id": "8",
+        "german": "das Gefühl",
+        "transcription": "",
+        "russian": "Эмоция, чувство",
+        "tags": "Эмоции",
+        "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
+    },
+    {
+        "id": "9",
+        "german": "die Kleidung",
+        "transcription": "",
+        "russian": "Одежда",
+        "tags": "Одежда",
+        "tags_json": "[\"u043cu0435u0441u044fu0446\"]"
+    },
+    {
+        "id": "10",
+        "german": "die Hose",
+        "transcription": "",
+        "russian": "Брюки",
+        "tags": "Одежда",
+        "tags_json": "[\"u043cu0435u0441u044fu0446\"]"
+    },
+    {
+        "id": "11",
+        "german": "die Freude",
+        "transcription": "",
+        "russian": "Радость",
+        "tags": "Эмоции",
+        "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
+    }
+    ,
+    {
+        "id": "12",
+        "german": "das Interesse",
+        "transcription": "",
+        "russian": "Интерес",
+        "tags": "Эмоции",
+        "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
+    }
+]
