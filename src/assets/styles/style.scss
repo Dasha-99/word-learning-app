@@ -1,0 +1,6 @@
+@use "vars";
+@use "templates";
+
+body {
+  background-color: vars.$bg-color;
+}

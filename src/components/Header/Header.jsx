@@ -2,7 +2,8 @@ import propTypes from 'prop-types';
 import MenuItem from "../MenuItem/MenuItem"
 import classes from "./Header.module.scss";
 
-function Header(props) {
+
+function Header() {
     return (
         <header className={classes.header}>
             <div className={classes['logo']}>
@@ -11,8 +12,8 @@ function Header(props) {
             </div>
             <nav className={classes.header__navigation}>
                 <ul className={classes.header__menu}>
-                    <MenuItem title={props.titleFirst} />
-                    <MenuItem title={props.titleSecond} />
+                    <MenuItem title="Список тем" href='../../pages/TopicListPage' />
+                    <MenuItem title="Создать список слов" href='#' />
                 </ul>
             </nav>
         </header>

@@ -1,6 +1,6 @@
 import WordListItem from "../WordListItem/WordListItem";
 import classes from "./WordList.module.scss";
-import wordsJson from "../../assets/words.json";
+import wordsJson from "../../data/words.json";
 import NewWord from "../NewWord/NewWord";
 
 function WordList() {

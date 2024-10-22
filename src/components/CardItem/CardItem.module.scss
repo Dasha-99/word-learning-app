@@ -5,9 +5,12 @@
   width: 80%;
   margin: 0 auto;
   &__content {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 100px;
     width: 50%;
     height: 450px;
     margin: 30px auto;
@@ -16,7 +19,7 @@
   &__text {
     @include templates.text-style;
     font-size: 60px;
-    &--translation {
+    &--hidden {
       display: none;
     }
   }

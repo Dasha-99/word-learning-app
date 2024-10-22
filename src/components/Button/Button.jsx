@@ -8,15 +8,17 @@ function Button(props) {
                 ${props.type === "delete" && classes["button--delete"]} 
                 ${props.type === "edit" && classes["button--edit"]}
                 ${props.type === "confirm" && classes["button--confirm"]}`}
+            onClick={() => props.onClick()}
         >
             {props.action}
-        </button>
+        </ button>
     );
 }
 
 Button.propTypes = {
     type: propTypes.string,
     action: propTypes.string,
+    onClick: propTypes.func
 };
 
 export default Button;

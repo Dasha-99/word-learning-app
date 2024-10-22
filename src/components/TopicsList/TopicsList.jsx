@@ -1,7 +1,7 @@
 import ListItem from "../TopicItem/TopicItem";
 import Button from "../Button/Button";
 import classes from "./TopicList.module.scss";
-import wordsJson from "../../assets/words.json";
+import wordsJson from "../../data/words.json";
 
 function TopicsList() {
     const getWordLists = () => {
