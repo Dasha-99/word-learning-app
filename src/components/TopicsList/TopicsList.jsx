@@ -1,10 +1,10 @@
 import ListItem from "../TopicItem/TopicItem";
 import Button from "../Button/Button";
-import classes from "./TopicList.module.scss";
 import wordsJson from "../../data/words.json";
+import classes from "./TopicList.module.scss";
 
-function TopicsList() {
-    const getWordLists = () => {
+export default function TopicsList() {
+    const getWordList = () => {
         let wordTopics = {};
         wordsJson.forEach(
             (word) =>
@@ -16,7 +16,7 @@ function TopicsList() {
         return Object.keys(wordTopics).map((key) => {
             return (
                 <ListItem
-                    key={key} //?//
+                    key={new Date()}
                     listName={key}
                     quantityCards={wordTopics[key]}
                     date="03.10.2024"
@@ -36,13 +36,15 @@ function TopicsList() {
                 </div>
                 <div className={classes.list__content}>
                     {
-                        getWordLists()
+                        getWordList()
                     }
                 </div>
             </section>
-            <Button type="ordinary" action="Создать новый список" />
+            <Button
+                type="ordinary"
+                action="Создать новый список"
+            />
         </>
     );
 }
 
-export default TopicsList;

@@ -8,7 +8,7 @@
   width: max-content;
   height: 50px;
   min-width: 200px;
-  margin: 0 auto;
+  // margin: 0 auto;
   padding: 15px;
   @include templates.title-style;
   font-size: 20px;
@@ -16,6 +16,7 @@
   background-color: vars.$ordinary-color;
   border-radius: 15px;
   border: none;
+  z-index: 10;
   &--delete {
     background-color: vars.$important-color;
   }
@@ -25,8 +26,21 @@
   &--confirm {
     background-color: vars.$confirm-color;
   }
+  &--round {
+    min-width: 80px;
+    height: 80px;
+    font-size: 36px;
+    border-radius: 100%;
+  }
   &:hover {
     cursor: pointer;
     border: 2px solid vars.$white-color;
+  }
+  &:disabled {
+    opacity: 0.5;
+    &:hover {
+      cursor: not-allowed;
+      border: none;
+    }
   }
 }

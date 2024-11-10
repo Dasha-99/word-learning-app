@@ -1,8 +1,6 @@
 import TopicsList from "../components/TopicsList/TopicsList";
 
-export default TopicListPage;
-
-function TopicListPage() {
+export default function TopicListPage() {
     return (
         <TopicsList />
     )

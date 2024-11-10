@@ -1,9 +1,9 @@
 import WordListItem from "../WordListItem/WordListItem";
-import classes from "./WordList.module.scss";
-import wordsJson from "../../data/words.json";
 import NewWord from "../NewWord/NewWord";
+import wordsJson from "../../data/words.json";
+import classes from "./WordList.module.scss";
 
-function WordList() {
+export default function WordList() {
     const getWords = (topic) => {
         const words = wordsJson.filter((item) => item.tags === topic);
 
@@ -26,15 +26,14 @@ function WordList() {
                     <h2 className={classes.list__title}>Перевод</h2>
                     <h2 className={classes.list__title}>Редактирование</h2>
                 </div>
+                <NewWord />
                 <div className={classes.list__content}>
                     {
                         getWords("Эмоции")
                     }
                 </div>
-                <NewWord />
             </section>
         </>
     );
 }
 
-export default WordList;

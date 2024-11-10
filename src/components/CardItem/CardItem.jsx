@@ -1,37 +1,75 @@
 import propTypes from "prop-types";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import classes from "./CardItem.module.scss";
-import { useState } from "react";
 
-export default Card;
+export default function CardItem(props) {
+    const [displayTranslation, setTranslation] = useState(false);
 
-function Card(props) {
-    const [display, setDisplay] = useState(false);
-
-    const handleDisplay = () => {
-        setDisplay(!display)
+    const handleTranslation = () => {
+        setTranslation(!displayTranslation)
     }
 
+    useEffect(() => {
+        setTranslation(false)
+    }, [props.updateCard]);
+
     return (
-        <div className={classes.card}>
-            <div className={classes.card__content}>
-                <p className={`${classes.card__text} ${display && classes["card__text--hidden"]}`}>{props.word}</p>
-                <p className=
-                    {`${classes.card__text} ${!display && classes["card__text--hidden"]}`}>
+        < div
+            className={`${classes["card-container"]} 
+                ${props.active && classes["card-container--active"]} 
+                ${props.action && classes["card-container--" + props.action]}`}
+        >
+            <div
+                className={`${classes.card} 
+                    ${!displayTranslation ? classes["card--front"] : classes["card--back"]}`}
+            >
+                <p className={classes.card__text}>
+                    {props.word}
+                </p>
+                <Button
+                    type="confirm"
+                    action="Показать перевод"
+                    onClick={handleTranslation}
+                />
+            </div>
+            <div
+                className={`${classes.card} 
+                    ${displayTranslation ? classes["card--front"] : classes["card--back"]}`}
+            >
+                <p className={classes.card__text}>
                     {props.translation}
                 </p>
-                <Button type='confirm' action="Показать перевод" onClick={handleDisplay} />
-            </div>
-            <div className={classes.card__buttons}>
-                <Button type="confirm" action="Знаю" />
-                <Button type="edit" action="Нужно повторить" />
-                <Button type="delete" action="На изучение" />
+                <Button
+                    type="confirm"
+                    action="Назад"
+                    onClick={handleTranslation}
+                />
             </div>
         </div>
+
+        // < div className={classes.card} >
+        //     <div className={classes.card__content}>
+        //         <p className={`${classes.card__text} ${displayTranslation && classes["card__text--hidden"]}`}>{props.word}</p>
+        //         <p className=
+        //             {`${classes.card__text} ${!displayTranslation && classes["card__text--hidden"]}`}>
+        //             {props.translation}
+        //         </p>
+        //         <Button type="confirm" action="Показать перевод" onClick={handleTranslation} />
+        //     </div>
+        //     <div className={classes.card__buttons}>
+        //         <Button type="confirm" action="Знаю" />
+        //         <Button type="edit" action="Нужно повторить" />
+        //         <Button type="delete" action="На изучение" />
+        //     </div>
+        // </div >
     );
 }
 
-Card.propTypes = {
+CardItem.propTypes = {
     word: propTypes.string,
     translation: propTypes.string,
+    updateCard: propTypes.bool,
+    action: propTypes.string,
+    active: propTypes.bool
 };

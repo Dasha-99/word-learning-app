@@ -1,9 +1,11 @@
 import Button from "../Button/Button";
 import classes from "./NewWord.module.scss";
 
-function NewWord() {
+export default function NewWord() {
     return (
-        <form className={classes.form} name="AddWordForm">
+        <form
+            className={classes.form}
+            name="AddWordForm">
             <input
                 className={classes.form__input}
                 type="text"
@@ -14,9 +16,11 @@ function NewWord() {
                 type="text"
                 placeholder="Перевод"
             />
-            <Button type="ordinary" action="Добавить новое слово" />
+            <Button
+                type="ordinary"
+                action="Добавить новое слово"
+            />
         </form>
     );
 }
 
-export default NewWord;

@@ -86,14 +86,54 @@
         "russian": "Радость",
         "tags": "Эмоции",
         "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
-    }
-    ,
+    },
     {
         "id": "12",
         "german": "das Interesse",
-        "transcription": "",
         "russian": "Интерес",
         "tags": "Эмоции",
         "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
+    },
+    {
+        "id": "13",
+        "german": "die Enkelin",
+        "russian": "Внучка",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "14",
+        "german": "die Großmutter",
+        "russian": "Бабушка",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "15",
+        "german": "die Schwester",
+        "russian": "Сестра",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "16",
+        "german": "der Enkel",
+        "russian": "Внук",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "17",
+        "german": "der Großvater",
+        "russian": "Дедушка",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+    },
+    {
+        "id": "18",
+        "german": "der Sohn",
+        "russian": "Сын",
+        "tags": "Семья",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     }
 ]

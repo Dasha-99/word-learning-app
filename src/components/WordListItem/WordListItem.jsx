@@ -1,11 +1,9 @@
 import propTypes from "prop-types";
+import { useState } from "react";
 import Button from "../Button/Button";
 import classes from "./WordListItem.module.scss";
-import { useState } from "react";
 
-export default WordListItem;
-
-function WordListItem(props) {
+export default function WordListItem(props) {
     const [edit, setEditMode] = useState(false);
 
     const handleEditMode = () => {
@@ -38,14 +36,23 @@ function EditWordLine(props) {
             <input
                 className={classes.line__content}
                 value={inputWord}
-                onChange={(evt) => { setWord(evt.target.value) }} />
+                onChange={(evt) => { setWord(evt.target.value) }}
+            />
             <input
                 className={classes.line__content}
                 value={inputTranslation}
-                onChange={(evt) => { setTranslation(evt.target.value) }} />
+                onChange={(evt) => { setTranslation(evt.target.value) }}
+            />
             <div className={classes.line__buttons}>
-                <Button type="edit" action="Отменить" onClick={handleState} />
-                <Button type="confirm" action="Сохранить" />
+                <Button
+                    type="edit"
+                    action="Отменить"
+                    onClick={handleState}
+                />
+                <Button
+                    type="confirm"
+                    action="Сохранить"
+                />
             </div>
         </>
     )
@@ -61,11 +68,22 @@ function DisplayWordLine(props) {
     const { word, translation, handleState } = props;
     return (
         <>
-            <p className={classes.line__content}>{word}</p>
-            <p className={classes.line__content}>{translation}</p>
+            <p className={classes.line__content}>
+                {word}
+            </p>
+            <p className={classes.line__content}>
+                {translation}
+            </p>
             <div className={classes.line__buttons}>
-                <Button type="edit" action="Редактировать" onClick={handleState} />
-                <Button type="delete" action="Удалить" />
+                <Button
+                    type="edit"
+                    action="Редактировать"
+                    onClick={handleState}
+                />
+                <Button
+                    type="delete"
+                    action="Удалить"
+                />
             </div>
         </>
     )
