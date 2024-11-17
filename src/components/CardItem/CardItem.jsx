@@ -20,50 +20,38 @@ export default function CardItem(props) {
                 ${props.active && classes["card-container--active"]} 
                 ${props.action && classes["card-container--" + props.action]}`}
         >
-            <div
-                className={`${classes.card} 
-                    ${!displayTranslation ? classes["card--front"] : classes["card--back"]}`}
-            >
-                <p className={classes.card__text}>
-                    {props.word}
-                </p>
-                <Button
-                    type="confirm"
-                    action="Показать перевод"
-                    onClick={handleTranslation}
-                />
-            </div>
-            <div
-                className={`${classes.card} 
-                    ${displayTranslation ? classes["card--front"] : classes["card--back"]}`}
-            >
-                <p className={classes.card__text}>
-                    {props.translation}
-                </p>
-                <Button
-                    type="confirm"
-                    action="Назад"
-                    onClick={handleTranslation}
-                />
-            </div>
-        </div>
+            <CardContent
+                typeCard={!displayTranslation ? classes["card--front"] : classes["card--back"]}
+                cardWord={props.word}
+                buttonAction="Показать перевод"
+                onClick={handleTranslation}
+            />
+            <CardContent
+                typeCard={displayTranslation ? classes["card--front"] : classes["card--back"]}
+                cardWord={props.translation}
+                buttonAction="Назад"
+                onClick={handleTranslation}
+            />
 
-        // < div className={classes.card} >
-        //     <div className={classes.card__content}>
-        //         <p className={`${classes.card__text} ${displayTranslation && classes["card__text--hidden"]}`}>{props.word}</p>
-        //         <p className=
-        //             {`${classes.card__text} ${!displayTranslation && classes["card__text--hidden"]}`}>
-        //             {props.translation}
-        //         </p>
-        //         <Button type="confirm" action="Показать перевод" onClick={handleTranslation} />
-        //     </div>
-        //     <div className={classes.card__buttons}>
-        //         <Button type="confirm" action="Знаю" />
-        //         <Button type="edit" action="Нужно повторить" />
-        //         <Button type="delete" action="На изучение" />
-        //     </div>
-        // </div >
+        </div>
     );
+}
+
+function CardContent(props) {
+    return (
+        <div
+            className={`${classes.card} ${props.typeCard}`}
+        >
+            <p className={classes.card__text}>
+                {props.cardWord}
+            </p>
+            <Button
+                type="confirm"
+                action={props.buttonAction}
+                onClick={props.onClick}
+            />
+        </div>
+    )
 }
 
 CardItem.propTypes = {
@@ -73,3 +61,17 @@ CardItem.propTypes = {
     action: propTypes.string,
     active: propTypes.bool
 };
+
+CardContent.propTypes = {
+    typeCard: propTypes.string,
+    cardWord: propTypes.string,
+    buttonAction: propTypes.string,
+    onClick: propTypes.func
+};
+
+
+{/* <div className={classes.card__buttons}>
+        <Button type="confirm" action="Знаю" />
+        <Button type="edit" action="Нужно повторить" />
+        <Button type="delete" action="На изучение" />
+    </div> */}

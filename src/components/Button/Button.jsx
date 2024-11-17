@@ -1,19 +1,27 @@
 import propTypes from "prop-types";
-import classes from "./Button.module.scss";
+import classNames from 'classnames';
+import classes from "./Button.module.scss"
 
-export default function Button(props) {
+export default function Button({ type, action, disabled = false, onClick }) {
+
+    const buttonClass = classNames(
+        classes.button,
+        {
+            [classes["button--delete"]]: type === "delete",
+            [classes["button--edit"]]: type === "edit",
+            [classes["button--confirm"]]: type === "confirm",
+            [classes["button--round"]]: type === "round"
+        }
+    )
+
     return (
         <button
-            className={`${classes.button} 
-                ${props.type === "delete" && classes["button--delete"]} 
-                ${props.type === "edit" && classes["button--edit"]}
-                ${props.type === "confirm" && classes["button--confirm"]}
-                ${props.type === "round" && classes["button--round"]}`}
-            disabled={props.disabled}
-            onClick={() => props.onClick()}
+            className={buttonClass}
+            disabled={disabled}
+            onClick={onClick}
         >
-            {props.action}
-        </ button>
+            {action}
+        </button>
     );
 }
 
@@ -23,8 +31,3 @@ Button.propTypes = {
     disabled: propTypes.bool,
     onClick: propTypes.func
 };
-
-Button.defaultProps = {
-    disabled: false
-}
-

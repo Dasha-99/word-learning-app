@@ -13,6 +13,7 @@
     @include templates.text-style;
     border: none;
     border-radius: 20px;
+    outline: none;
     &::placeholder {
       font-size: 18px;
     }

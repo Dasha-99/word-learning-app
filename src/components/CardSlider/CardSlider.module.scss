@@ -36,4 +36,9 @@
   &__content {
     @include templates.text-style;
   }
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
 }

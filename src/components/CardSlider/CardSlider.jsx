@@ -1,14 +1,16 @@
 import propTypes from "prop-types";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import CardItem from "../CardItem/CardItem";
 import classes from "./CardSlider.module.scss";
 
- export default function CardSlider({ cards, indexCard = 0 }) {
+export default function CardSlider({ cards, indexCard = 0 }) {
     const [index, setIndex] = useState(indexCard)
     const [updateCard, setUpdateCard] = useState(false)
     const [isSliderVisible, setDisplaySlider] = useState(true)
     const [direction, setDirection] = useState('');
+    const navigate = useNavigate();
 
     const handleNextCard = () => {
         if (index + 1 === cards.length) {
@@ -46,6 +48,9 @@ import classes from "./CardSlider.module.scss";
             return 'out-left'
 
         return ''
+    }
+    const handleChangeTopic = () => {
+        navigate(`/topics`);
     }
 
     return (
@@ -88,13 +93,19 @@ import classes from "./CardSlider.module.scss";
             :
             <section className={classes.message}>
                 <p className={classes.message__content}>
-                    Вы просмотрели весь список слов
+                    Вы изучили весь список слов
                 </p>
-                <Button
-                    type="confirm"
-                    action="Просмотреть список слов заново"
-                    onClick={handleView}
-                />
+                <div className={classes.message__buttons}>
+                    <Button
+                        type="confirm"
+                        action="Просмотреть список слов заново"
+                        onClick={handleView}
+                    />
+                    <Button
+                        action="Выбрать другой список слов"
+                        onClick={handleChangeTopic}
+                    />
+                </div>
             </section>
 
     )

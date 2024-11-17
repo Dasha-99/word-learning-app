@@ -1,9 +1,35 @@
 @use "../../assets/styles/vars";
 @use "../../assets/styles/templates";
 
+.title {
+  @include templates.title-style;
+  padding: 10px 20px;
+  &--addition {
+    font-size: 36px;
+    text-decoration: underline;
+  }
+}
+.input-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  @include templates.title-style;
+  &__input {
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    @include templates.text-style;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    &::placeholder {
+      font-size: 18px;
+    }
+  }
+}
 .list {
-  width: 80%;
-  margin: 10px auto;
+  margin: 10px 0;
   &__titles {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -12,6 +38,7 @@
   &__title {
     padding: 10px 20px;
     @include templates.title-style;
+    font-size: 28px;
   }
   &__content {
     display: flex;

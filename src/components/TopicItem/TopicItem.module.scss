@@ -3,7 +3,8 @@
 
 .line {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  // grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 30% 30% 40%;
   gap: 10px;
   padding: 10px;
   border-bottom: 2px solid vars.$border-color;
@@ -14,5 +15,8 @@
     padding: 5px;
     @include templates.text-style;
     font-weight: 500;
+    &--buttons {
+      gap: 20px;
+    }
   }
 }
