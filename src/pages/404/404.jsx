@@ -5,12 +5,12 @@ export default function NotFoundPage() {
     return (
         <main className="container">
             <div className={classes.content}>
-                <div className={classes.content__photo}></div>
-                <div className={classes.content__info}>
-                    <h1 className={`${classes.content__title} ${classes["content__title--large"]}`}>
+                <div className={classes.image}></div>
+                <div className={classes.info}>
+                    <h1 className={`${classes.title} ${classes["title--large"]}`}>
                         404
                     </h1>
-                    <h2 className={classes.content__title}>
+                    <h2 className={classes.title}>
                         Страница не найдена
                     </h2>
                     <Link to='/'>

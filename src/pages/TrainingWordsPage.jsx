@@ -1,19 +1,9 @@
-import wordsJson from "../data/words.json";
-import CardSlider from "../components/CardSlider/CardSlider";
-import { useParams } from "react-router-dom";
+import TrainingComponent from "../components/TrainingComponent/TrainingComponent";
 
 export default function TrainingWordsPage() {
-    const getWordList = (topic) => {
-        return wordsJson.filter((word) => word.tags === topic)
-    };
-
-    const { topicName } = useParams()
-
-    const cards = getWordList(topicName)
     return (
         <main className="container">
-            <CardSlider cards={cards} />
+            <TrainingComponent />
         </main>
     );
 }
-

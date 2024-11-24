@@ -1,17 +1,26 @@
 import propTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Button from "../Button/Button";
 import classes from "./CardItem.module.scss";
 
 export default function CardItem(props) {
     const [displayTranslation, setTranslation] = useState(false);
+    const buttonRef = useRef(null);
 
-    const handleTranslation = () => {
+    const handleShowTranslation = () => {
+        setTranslation(!displayTranslation)
+        props.increaseStudiedWords()
+    }
+
+    const handleHideTranslation = () => {
         setTranslation(!displayTranslation)
     }
 
     useEffect(() => {
         setTranslation(false)
+        if (buttonRef.current) {
+            buttonRef.current.focus();
+        }
     }, [props.updateCard]);
 
     return (
@@ -24,13 +33,14 @@ export default function CardItem(props) {
                 typeCard={!displayTranslation ? classes["card--front"] : classes["card--back"]}
                 cardWord={props.word}
                 buttonAction="Показать перевод"
-                onClick={handleTranslation}
+                onClick={handleShowTranslation}
+                buttonRef={buttonRef}
             />
             <CardContent
                 typeCard={displayTranslation ? classes["card--front"] : classes["card--back"]}
                 cardWord={props.translation}
                 buttonAction="Назад"
-                onClick={handleTranslation}
+                onClick={handleHideTranslation}
             />
 
         </div>
@@ -42,13 +52,14 @@ function CardContent(props) {
         <div
             className={`${classes.card} ${props.typeCard}`}
         >
-            <p className={classes.card__text}>
+            <p className={classes.text}>
                 {props.cardWord}
             </p>
             <Button
                 type="confirm"
                 action={props.buttonAction}
                 onClick={props.onClick}
+                ref={props.buttonRef}
             />
         </div>
     )
@@ -59,19 +70,14 @@ CardItem.propTypes = {
     translation: propTypes.string,
     updateCard: propTypes.bool,
     action: propTypes.string,
-    active: propTypes.bool
+    active: propTypes.bool,
+    increaseStudiedWords: propTypes.func
 };
 
 CardContent.propTypes = {
     typeCard: propTypes.string,
     cardWord: propTypes.string,
     buttonAction: propTypes.string,
-    onClick: propTypes.func
+    onClick: propTypes.func,
+    buttonRef: propTypes.object
 };
-
-
-{/* <div className={classes.card__buttons}>
-        <Button type="confirm" action="Знаю" />
-        <Button type="edit" action="Нужно повторить" />
-        <Button type="delete" action="На изучение" />
-    </div> */}

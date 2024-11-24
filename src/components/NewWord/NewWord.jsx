@@ -7,12 +7,12 @@ export default function NewWord() {
             className={classes.form}
             name="AddWordForm">
             <input
-                className={classes.form__input}
+                className={classes.input}
                 type="text"
                 placeholder="Новое слово"
             />
             <input
-                className={classes.form__input}
+                className={classes.input}
                 type="text"
                 placeholder="Перевод"
             />

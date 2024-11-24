@@ -4,44 +4,47 @@
   margin: 50px auto;
   display: flex;
   gap: 50px;
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    width: 50%;
-    margin: 30px 0;
-  }
-  &__title {
-    @include templates.title-style;
-  }
-  &__text {
-    @include templates.text-style;
-    font-weight: 400;
-  }
-  &__photo {
-    width: 50%;
-    background-image: url("../../assets/images/home-page-photo.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 30px;
-  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 50%;
+  margin: 30px 0;
+}
+
+.title {
+  @include templates.title-style;
+}
+
+.text {
+  @include templates.text-style;
+  font-weight: 400;
+}
+
+.image {
+  width: 50%;
+  background-image: url("../../assets/images/home-page-photo.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 30px;
 }
 
 .possibilities {
   margin: 60px 0;
-  &__title {
-    margin-bottom: 20px;
-    @include templates.title-style;
-  }
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    list-style-position: inside;
-  }
-  &__list-item {
-    @include templates.text-style;
-    font-weight: 400;
-  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 0;
+  list-style-position: inside;
+}
+
+.list-item {
+  @include templates.text-style;
+  font-weight: 400;
 }

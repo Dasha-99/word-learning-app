@@ -34,16 +34,16 @@ function EditWordLine(props) {
     return (
         <>
             <input
-                className={classes.line__content}
+                className={classes.content}
                 value={inputWord}
                 onChange={(evt) => { setWord(evt.target.value) }}
             />
             <input
-                className={classes.line__content}
+                className={classes.content}
                 value={inputTranslation}
                 onChange={(evt) => { setTranslation(evt.target.value) }}
             />
-            <div className={classes.line__buttons}>
+            <div className={classes.buttons}>
                 <Button
                     type="edit"
                     action="Отменить"
@@ -68,13 +68,13 @@ function DisplayWordLine(props) {
     const { word, translation, handleState } = props;
     return (
         <>
-            <p className={classes.line__content}>
+            <p className={classes.content}>
                 {word}
             </p>
-            <p className={classes.line__content}>
+            <p className={classes.content}>
                 {translation}
             </p>
-            <div className={classes.line__buttons}>
+            <div className={classes.buttons}>
                 <Button
                     type="edit"
                     action="Редактировать"

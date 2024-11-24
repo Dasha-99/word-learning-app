@@ -27,7 +27,6 @@ export default function TopicsList() {
                     key={key}
                     listName={key}
                     quantityCards={wordTopics[key]}
-                // date="03.10.2024"
                 />
             );
         });
@@ -36,13 +35,11 @@ export default function TopicsList() {
     return (
         <>
             <section className={classes.list}>
-                <div className={classes.list__titles}>
-                    <h2 className={classes.list__title}>Тема</h2>
-                    <h2 className={classes.list__title}>Количество карточек</h2>
-                    {/* <h2 className={classes.list__title}>Дата создания</h2> */}
-                    {/* <h2 className={classes.list__title}>Редактирование</h2> */}
+                <div className={classes.titles}>
+                    <h2 className={classes.title}>Тема</h2>
+                    <h2 className={classes.title}>Количество слов</h2>
                 </div>
-                <div className={classes.list__content}>
+                <div className={classes.content}>
                     {
                         getWordList()
                     }

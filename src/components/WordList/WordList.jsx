@@ -37,20 +37,20 @@ export default function WordList() {
                         <label>Название списка слов: </label>
                         <input
                             type="text"
-                            className={classes["input-block__input"]}
+                            className={classes.input}
                         />
                     </div>
             }
             <section className={classes.list}>
-                <div className={classes.list__titles}>
-                    <h2 className={classes.list__title}>Слово</h2>
-                    <h2 className={classes.list__title}>Перевод</h2>
-                    <h2 className={classes.list__title}>Редактирование</h2>
+                <div className={classes.titles}>
+                    <h2 className={classes.title}>Слово</h2>
+                    <h2 className={classes.title}>Перевод</h2>
+                    <h2 className={classes.title}>Редактирование</h2>
                 </div>
                 <NewWord />
                 {
                     id !== 'new' &&
-                    <div className={classes.list__content}>
+                    <div className={classes.content}>
                         {
                             getWords(id)
                         }

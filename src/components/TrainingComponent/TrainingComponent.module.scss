@@ -1,0 +1,45 @@
+@use "../../assets/styles/templates";
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  margin: 30px auto;
+}
+
+.cards {
+  position: relative;
+  display: flex;
+  width: 30vw;
+  height: 450px;
+}
+
+.buttons {
+  display: flex;
+  gap: 100px;
+}
+
+.title {
+  @include templates.title-style;
+  font-size: 42px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.subtitle {
+  @include templates.title-style;
+  font-size: 36px;
+}
+
+.text {
+  @include templates.text-style;
+  font-size: 32px;
+  font-weight: 300;
+}

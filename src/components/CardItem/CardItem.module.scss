@@ -25,6 +25,12 @@
   &--out-left {
     animation: slideOutLeft 0.5s forwards;
   }
+  &--in-bottom {
+    animation: slideInBottom 0.5s forwards;
+  }
+  &--out-bottom {
+    animation: slideOutBottom 0.5s forwards;
+  }
   @keyframes slideOutLeft {
     0% {
       transform: translateX(0);
@@ -45,6 +51,16 @@
       opacity: 0;
     }
   }
+  @keyframes slideOutBottom {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
   @keyframes slideInLeft {
     0% {
       transform: translateX(100%);
@@ -62,6 +78,16 @@
     }
     100% {
       transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slideInBottom {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
       opacity: 1;
     }
   }
@@ -86,17 +112,12 @@
   &--back {
     transform: rotateX(180deg);
   }
-  &__text {
-    @include templates.text-style;
-    font-size: 60px;
-    &--hidden {
-      display: none;
-    }
-  }
-  &__buttons {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
-    margin: 30px auto;
+}
+
+.text {
+  @include templates.text-style;
+  font-size: 60px;
+  &--hidden {
+    display: none;
   }
 }

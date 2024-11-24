@@ -1,9 +1,10 @@
 import propTypes from "prop-types";
 import classNames from 'classnames';
 import classes from "./Button.module.scss"
+import { forwardRef } from "react";
 
-export default function Button({ type, action, disabled = false, onClick }) {
-
+const Button = forwardRef(function Button(props, ref) {
+    const { type, action, disabled = false, onClick } = props
     const buttonClass = classNames(
         classes.button,
         {
@@ -13,17 +14,21 @@ export default function Button({ type, action, disabled = false, onClick }) {
             [classes["button--round"]]: type === "round"
         }
     )
-
+    
     return (
         <button
             className={buttonClass}
             disabled={disabled}
             onClick={onClick}
+            ref={ref}
         >
             {action}
         </button>
     );
 }
+)
+
+export default Button
 
 Button.propTypes = {
     type: propTypes.string,

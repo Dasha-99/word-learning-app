@@ -6,65 +6,73 @@ import CardItem from "../CardItem/CardItem";
 import classes from "./CardSlider.module.scss";
 
 export default function CardSlider({ cards, indexCard = 0 }) {
-    const [index, setIndex] = useState(indexCard)
+    const [curIndex, setCurIndex] = useState(indexCard)
     const [updateCard, setUpdateCard] = useState(false)
     const [isSliderVisible, setDisplaySlider] = useState(true)
     const [direction, setDirection] = useState('');
+    const [studiedWords, setStudiedWords] = useState([])
     const navigate = useNavigate();
 
     const handleNextCard = () => {
-        if (index + 1 === cards.length) {
+        if (curIndex + 1 === cards.length) {
             setDisplaySlider(false)
         }
         else {
-            setIndex(index + 1)
+            setCurIndex(curIndex + 1)
             setDirection('left')
         }
         setUpdateCard(!updateCard)
     }
 
     const handlePreviousCard = () => {
-        if (index === 0) {
-            setIndex(cards.length - 1)
+        if (curIndex === 0) {
+            setCurIndex(cards.length - 1)
         }
         else {
-            setIndex(index - 1)
+            setCurIndex(curIndex - 1)
             setDirection('right')
         }
         setUpdateCard(!updateCard)
     }
 
     const handleView = () => {
-        setIndex(0)
+        setCurIndex(0)
         setDisplaySlider(true)
     }
-
-    const setAction = (curIndex) => {
-        if (index === curIndex && direction)
+ 
+    const setAction = (tempIndex) => {
+        if (curIndex === tempIndex && direction)
             return 'in-' + direction
-        if (curIndex - 1 === index && direction === 'right')
+        if (tempIndex - 1 === curIndex && direction === 'right')
             return 'out-right'
-        if (curIndex + 1 === index && direction === 'left')
+        if (tempIndex + 1 === curIndex && direction === 'left')
             return 'out-left'
 
         return ''
     }
+    
     const handleChangeTopic = () => {
         navigate(`/topics`);
+    }
+
+    const increaseStudiedWords = () => {
+        const isFoundItem = studiedWords.find(item => item === cards[curIndex].id);
+        if (!isFoundItem)
+            setStudiedWords([...studiedWords, cards[curIndex].id])
     }
 
     return (
         isSliderVisible
             ?
             <section className={classes.slider}>
-                <div className={classes.slider__content}>
+                <div className={classes.content}>
                     <Button
                         type="round"
                         action="←"
-                        disabled={index === 0}
+                        disabled={curIndex === 0}
                         onClick={handlePreviousCard}
                     />
-                    <div className={classes.slider__cards}>
+                    <div className={classes.cards}>
                         {
                             cards.map((item, itemIndex) => {
                                 return (
@@ -74,7 +82,8 @@ export default function CardSlider({ cards, indexCard = 0 }) {
                                         translation={item["russian"]}
                                         updateCard={updateCard}
                                         action={setAction(itemIndex)}
-                                        active={itemIndex === index}
+                                        active={itemIndex === curIndex}
+                                        increaseStudiedWords={increaseStudiedWords}
                                     />
                                 )
                             })
@@ -86,16 +95,16 @@ export default function CardSlider({ cards, indexCard = 0 }) {
                         onClick={handleNextCard}
                     />
                 </div>
-                <span className={classes.slider__text}>
-                    {index + 1}/{cards.length}
+                <span className={classes.text}>
+                    Изучено слов: {studiedWords.length}/{cards.length}
                 </span>
             </section>
             :
             <section className={classes.message}>
-                <p className={classes.message__content}>
-                    Вы изучили весь список слов
+                <p className={classes.text}>
+                    Вы просмотрели весь список слов
                 </p>
-                <div className={classes.message__buttons}>
+                <div className={classes.buttons}>
                     <Button
                         type="confirm"
                         action="Просмотреть список слов заново"

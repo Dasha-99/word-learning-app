@@ -3,19 +3,22 @@
 
 .list {
   margin: 40px 0;
-  &__content {
-    display: flex;
-    flex-direction: column;
-  }
-  &__titles {
-    display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    grid-template-columns: 30% 30% 40%;
-    border-bottom: 2px solid vars.$border-color;
-  }
-  &__title {
-    padding: 10px;
-    @include templates.title-style;
-    text-align: center;
-  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.titles {
+  display: grid;
+  // grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 30% 20% 50%;
+  border-bottom: 2px solid vars.$border-color;
+}
+
+.title {
+  padding: 10px;
+  @include templates.title-style;
+  text-align: center;
 }

@@ -1,4 +1,3 @@
-import propTypes from 'prop-types';
 import classes from "./Header.module.scss";
 import { Link } from 'react-router-dom';
 
@@ -7,29 +6,29 @@ export default function Header() {
     return (
         <header className={classes.header}>
             <Link to='/'>
-                <div className={classes['logo']}>
-                    <div className={classes['logo__img']}></div>
-                    <h1 className={classes['logo__title']}>
+                <div className={classes.logo}>
+                    <div className={classes.image}></div>
+                    <h1 className={classes.title}>
                         Слова по карточкам
                     </h1>
                 </div>
             </Link>
-            <nav className={classes.header__navigation}>
+            <nav className={classes.navigation}>
                 <Link
                     to='/'
-                    className={classes.header__link}
+                    className={classes.link}
                 >
                     Главная
                 </Link>
                 <Link
                     to='/topics'
-                    className={classes.header__link}
+                    className={classes.link}
                 >
-                    Список слов
+                    Список тем
                 </Link>
                 <Link
                     to={`/topics/${idNewList}`}
-                    className={classes.header__link}
+                    className={classes.link}
                 >
                     Создать список слов
                 </Link>
@@ -37,9 +36,4 @@ export default function Header() {
         </header >
 
     )
-}
-
-Header.propTypes = {
-    titleFirst: propTypes.string,
-    titleSecond: propTypes.string
 }

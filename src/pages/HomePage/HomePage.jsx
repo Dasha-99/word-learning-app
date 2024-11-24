@@ -14,17 +14,17 @@ export default function HomePage() {
     return (
         <main className="container">
             <section className={classes["welcome-section"]}>
-                <div className={classes["welcome-section__content"]}>
-                    <h1 className={classes["welcome-section__title"]}>
+                <div className={classes.content}>
+                    <h1 className={classes.title}>
                         Изучайте немецкий язык с карточками!
                     </h1>
-                    <p className={classes["welcome-section__text"]} >
+                    <p className={classes.text} >
                         Добро пожаловать на сайт, посвященный изучению немецкого языка с помощью карточек!
                     </p>
-                    <p className={classes["welcome-section__text"]} >
+                    <p className={classes.text} >
                         Здесь вы найдете множество тематических наборов карточек, которые помогут вам легко и эффективно запоминать новые слова и фразы. Изучение языка может быть увлекательным и интересным процессом.
                     </p>
-                    <p className={classes["welcome-section__text"]} >
+                    <p className={classes.text} >
                         Присоединяйтесь, погружайтесь в мир немецкого языка и открывайте для себя новые горизонты! Начните учиться уже сегодня и сделайте шаг к свободному владению немецким!
                     </p>
                     <Button
@@ -32,20 +32,20 @@ export default function HomePage() {
                         onClick={handleClick}
                     />
                 </div>
-                <div className={classes["welcome-section__photo"]}></div>
+                <div className={classes.image}></div>
             </section>
             <section className={classes.possibilities}>
-                <h2 className={classes.possibilities__title}>
+                <h2 className={classes.title}>
                     Возможности
                 </h2>
-                <ul className={classes.possibilities__list}>
-                    <li className={classes["possibilities__list-item"]}>
+                <ul className={classes.list}>
+                    <li className={classes["list-item"]}>
                         Создание собственных наборов карточек.
                     </li>
-                    <li className={classes["possibilities__list-item"]}>
+                    <li className={classes["list-item"]}>
                         Изучение слов по разным темам.
                     </li>
-                    <li className={classes["possibilities__list-item"]}>
+                    <li className={classes["list-item"]}>
                         Тренировки для изучения и повторения слов.
                     </li>
                 </ul>
