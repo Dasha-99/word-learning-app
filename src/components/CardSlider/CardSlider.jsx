@@ -7,7 +7,6 @@ import classes from "./CardSlider.module.scss";
 
 export default function CardSlider({ cards, indexCard = 0 }) {
     const [curIndex, setCurIndex] = useState(indexCard)
-    const [updateCard, setUpdateCard] = useState(false)
     const [isSliderVisible, setDisplaySlider] = useState(true)
     const [direction, setDirection] = useState('');
     const [studiedWords, setStudiedWords] = useState([])
@@ -21,7 +20,6 @@ export default function CardSlider({ cards, indexCard = 0 }) {
             setCurIndex(curIndex + 1)
             setDirection('left')
         }
-        setUpdateCard(!updateCard)
     }
 
     const handlePreviousCard = () => {
@@ -32,14 +30,13 @@ export default function CardSlider({ cards, indexCard = 0 }) {
             setCurIndex(curIndex - 1)
             setDirection('right')
         }
-        setUpdateCard(!updateCard)
     }
 
     const handleView = () => {
         setCurIndex(0)
         setDisplaySlider(true)
     }
- 
+
     const setAction = (tempIndex) => {
         if (curIndex === tempIndex && direction)
             return 'in-' + direction
@@ -50,7 +47,7 @@ export default function CardSlider({ cards, indexCard = 0 }) {
 
         return ''
     }
-    
+
     const handleChangeTopic = () => {
         navigate(`/topics`);
     }
@@ -78,9 +75,9 @@ export default function CardSlider({ cards, indexCard = 0 }) {
                                 return (
                                     <CardItem
                                         key={item.id}
+                                        id={item.id}
                                         word={item["german"]}
                                         translation={item["russian"]}
-                                        updateCard={updateCard}
                                         action={setAction(itemIndex)}
                                         active={itemIndex === curIndex}
                                         increaseStudiedWords={increaseStudiedWords}

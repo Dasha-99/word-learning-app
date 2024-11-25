@@ -7,8 +7,6 @@ import { useState } from "react";
 
 export default function TrainingComponent() {
     const [curIndex, setCurIndex] = useState(0)
-    const [updateCard, setUpdateCard] = useState(false)
-    const [isNextCard, setIsNextCard] = useState(true)
     const [knownQuantity, setKnownQuantity] = useState(0)
     const [repeatQuantity, setRepeatQuantity] = useState(0)
     const [studyQuantity, setStudyQuantity] = useState(0)
@@ -17,29 +15,22 @@ export default function TrainingComponent() {
         return wordsJson.filter((word) => word.tags === topic)
     };
 
-    const setNewStates = ()=>{
-        setCurIndex(curIndex + 1)
-        setUpdateCard(!updateCard)
-        if (curIndex + 1 === cards.length) {
-            setIsNextCard(false)
-        }
-    }
     const { topicName } = useParams()
 
     const cards = getWordList(topicName)
 
     const handleKnownButton = () => {
-        setNewStates()
+        setCurIndex(curIndex + 1)
         setKnownQuantity(knownQuantity + 1)
     }
 
     const handleRepeatButton = () => {
-        setNewStates()
+        setCurIndex(curIndex + 1)
         setRepeatQuantity(repeatQuantity + 1)
     }
 
     const handleStudyButton = () => {
-        setNewStates()
+        setCurIndex(curIndex + 1)
         setStudyQuantity(studyQuantity + 1)
     }
 
@@ -55,7 +46,7 @@ export default function TrainingComponent() {
     }
 
     return (
-        isNextCard
+        curIndex + 1 <= cards.length
             ?
             < div className={classes.content} >
                 <div className={classes.cards}>
@@ -64,9 +55,9 @@ export default function TrainingComponent() {
                             return (
                                 <CardItem
                                     key={item.id}
+                                    id={item.id}
                                     word={item["german"]}
                                     translation={item["russian"]}
-                                    updateCard={updateCard}
                                     action={setAction(itemIndex)}
                                     active={itemIndex === curIndex}
                                     className={classes.card}

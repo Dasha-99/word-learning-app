@@ -12,14 +12,16 @@ export default function App() {
     return (
         <BrowserRouter>
             <Header />
-            <Routes>
-                <Route path='/' element={<HomePage />} />
-                <Route path='/topics' element={<TopicListPage />} />
-                <Route path='/topics/:id' element={<WordListPage />} />
-                <Route path='/flashcards/:topicName' element={<BrowsingWordsPage />} />
-                <Route path='/game/:topicName' element={<TrainingWordsPage />} />
-                <Route path='*' element={<NotFoundPage />} />
-            </Routes>
+            <main>
+                <Routes>
+                    <Route path='/' element={<HomePage />} />
+                    <Route path='/topics' element={<TopicListPage />} />
+                    <Route path='/topics/:topicName' element={<WordListPage />} />
+                    <Route path='/flashcards/:topicName' element={<BrowsingWordsPage />} />
+                    <Route path='/game/:topicName' element={<TrainingWordsPage />} />
+                    <Route path='*' element={<NotFoundPage />} />
+                </Routes>
+            </main>
         </BrowserRouter>
     )
 }

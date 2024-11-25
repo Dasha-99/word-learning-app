@@ -1,35 +1,40 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import WordListItem from "../WordListItem/WordListItem";
 import NewWord from "../NewWord/NewWord";
 import wordsJson from "../../data/words.json";
 import classes from "./WordList.module.scss";
 
 export default function WordList() {
+    const { topicName } = useParams()
 
-    const { id } = useParams()
-    const getWords = (topic) => {
-        const words = wordsJson.filter((item) => item.tags === topic);
+    const [words, setWords] = useState(
+        wordsJson.filter((item) => item.tags === topicName)
+    )
 
-        return words.map((item) => {
-            return (
-                <WordListItem
-                    key={item.id}
-                    word={item.german}
-                    translation={item.russian}
-                />
-            );
-        });
-    };
+    const handleDelete = (id) => {
+        setWords(words.filter((item) => item.id !== id))
+    }
+
+    const handleEdit = (id, newWord, newTranslation) => {
+        setWords(words.map((item) => {
+            if (item.id === id) {
+                item.german = newWord
+                item.russian = newTranslation
+            }
+            return item
+        }))
+    }
 
     return (
         <>
 
             {
-                id !== 'new' ?
+                topicName !== 'new' ?
                     <h2 className={classes.title}>
-                        Слова по теме:
+                        Слова по теме:&nbsp;
                         <span className={classes["title--addition"]}>
-                            {id}
+                            {topicName}
                         </span>
                     </h2>
                     :
@@ -49,10 +54,21 @@ export default function WordList() {
                 </div>
                 <NewWord />
                 {
-                    id !== 'new' &&
+                    topicName !== 'new' &&
                     <div className={classes.content}>
                         {
-                            getWords(id)
+                            words.map((item) => {
+                                return (
+                                    <WordListItem
+                                        key={item.id}
+                                        id={item.id}
+                                        word={item.german}
+                                        translation={item.russian}
+                                        handleDelete={handleDelete}
+                                        handleEdit={handleEdit}
+                                    />
+                                );
+                            })
                         }
                     </div>
                 }

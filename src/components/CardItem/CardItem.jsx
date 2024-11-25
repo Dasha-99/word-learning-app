@@ -3,13 +3,15 @@ import { useEffect, useState, useRef } from "react";
 import Button from "../Button/Button";
 import classes from "./CardItem.module.scss";
 
-export default function CardItem(props) {
+export default function CardItem({
+    id, word, translation, action, active, increaseStudiedWords = () => { }
+}) {
     const [displayTranslation, setTranslation] = useState(false);
     const buttonRef = useRef(null);
 
     const handleShowTranslation = () => {
         setTranslation(!displayTranslation)
-        props.increaseStudiedWords()
+        increaseStudiedWords()
     }
 
     const handleHideTranslation = () => {
@@ -21,24 +23,24 @@ export default function CardItem(props) {
         if (buttonRef.current) {
             buttonRef.current.focus();
         }
-    }, [props.updateCard]);
+    }, [id]);
 
     return (
         < div
             className={`${classes["card-container"]} 
-                ${props.active && classes["card-container--active"]} 
-                ${props.action && classes["card-container--" + props.action]}`}
+                ${active && classes["card-container--active"]} 
+                ${action && classes["card-container--" + action]}`}
         >
             <CardContent
                 typeCard={!displayTranslation ? classes["card--front"] : classes["card--back"]}
-                cardWord={props.word}
+                cardWord={word}
                 buttonAction="Показать перевод"
                 onClick={handleShowTranslation}
                 buttonRef={buttonRef}
             />
             <CardContent
                 typeCard={displayTranslation ? classes["card--front"] : classes["card--back"]}
-                cardWord={props.translation}
+                cardWord={translation}
                 buttonAction="Назад"
                 onClick={handleHideTranslation}
             />
@@ -66,9 +68,9 @@ function CardContent(props) {
 }
 
 CardItem.propTypes = {
+    id: propTypes.number,
     word: propTypes.string,
     translation: propTypes.string,
-    updateCard: propTypes.bool,
     action: propTypes.string,
     active: propTypes.bool,
     increaseStudiedWords: propTypes.func

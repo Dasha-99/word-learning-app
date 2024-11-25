@@ -23,14 +23,21 @@ export default function WordListItem(props) {
 }
 
 WordListItem.propTypes = {
+    id: propTypes.number,
     word: propTypes.string,
-    translation: propTypes.string
+    translation: propTypes.string,
+    handleDelete: propTypes.func,
+    handleEdit: propTypes.func
 };
 
 function EditWordLine(props) {
-    const { word, translation, handleState } = props;
-    const [inputWord, setWord] = useState(word);
-    const [inputTranslation, setTranslation] = useState(translation);
+    const [inputWord, setWord] = useState(props.word);
+    const [inputTranslation, setTranslation] = useState(props.translation);
+
+    const handleSave = (id, newWord, newTranslation) => {
+        props.handleEdit(id, newWord, newTranslation)
+        props.handleState()
+    }
     return (
         <>
             <input
@@ -47,11 +54,12 @@ function EditWordLine(props) {
                 <Button
                     type="edit"
                     action="Отменить"
-                    onClick={handleState}
+                    onClick={props.handleState}
                 />
                 <Button
                     type="confirm"
                     action="Сохранить"
+                    onClick={() => { handleSave(props.id, inputWord, inputTranslation) }}
                 />
             </div>
         </>
@@ -59,30 +67,32 @@ function EditWordLine(props) {
 }
 
 EditWordLine.propTypes = {
+    id: propTypes.number,
     word: propTypes.string,
     translation: propTypes.string,
+    handleEdit: propTypes.func,
     handleState: propTypes.func
 }
 
 function DisplayWordLine(props) {
-    const { word, translation, handleState } = props;
     return (
         <>
             <p className={classes.content}>
-                {word}
+                {props.word}
             </p>
             <p className={classes.content}>
-                {translation}
+                {props.translation}
             </p>
             <div className={classes.buttons}>
                 <Button
                     type="edit"
                     action="Редактировать"
-                    onClick={handleState}
+                    onClick={props.handleState}
                 />
                 <Button
                     type="delete"
                     action="Удалить"
+                    onClick={() => { props.handleDelete(props.id) }}
                 />
             </div>
         </>
@@ -90,7 +100,9 @@ function DisplayWordLine(props) {
 }
 
 DisplayWordLine.propTypes = {
+    id: propTypes.number,
     word: propTypes.string,
     translation: propTypes.string,
+    handleDelete: propTypes.func,
     handleState: propTypes.func
 }

@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "german": "die Familie",
         "transcription": "",
         "russian": "Семья",
@@ -8,7 +8,7 @@
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "2",
+        "id": 2,
         "german": "die Eltern",
         "transcription": "",
         "russian": "Родители",
@@ -16,7 +16,7 @@
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "3",
+        "id": 3,
         "german": "die Frau",
         "transcription": "",
         "russian": "Женщина, жена",
@@ -24,7 +24,7 @@
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "4",
+        "id": 4,
         "german": "die Mutter",
         "transcription": "",
         "russian": "Мать",
@@ -32,7 +32,7 @@
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "5",
+        "id": 5,
         "german": "der Vater",
         "transcription": "",
         "russian": "Отец",
@@ -40,7 +40,7 @@
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "6",
+        "id": 6,
         "german": "die Tochter",
         "transcription": "",
         "russian": "Дочь",
@@ -48,7 +48,7 @@
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "7",
+        "id": 7,
         "german": "der Anzug",
         "transcription": "",
         "russian": "Костюм",
@@ -56,7 +56,7 @@
         "tags_json": "[\"u043cu0435u0441u044fu0446\"]"
     },
     {
-        "id": "8",
+        "id": 8,
         "german": "das Gefühl",
         "transcription": "",
         "russian": "Эмоция, чувство",
@@ -64,7 +64,7 @@
         "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
     },
     {
-        "id": "9",
+        "id": 9,
         "german": "die Kleidung",
         "transcription": "",
         "russian": "Одежда",
@@ -72,7 +72,7 @@
         "tags_json": "[\"u043cu0435u0441u044fu0446\"]"
     },
     {
-        "id": "10",
+        "id": 10,
         "german": "die Hose",
         "transcription": "",
         "russian": "Брюки",
@@ -80,7 +80,7 @@
         "tags_json": "[\"u043cu0435u0441u044fu0446\"]"
     },
     {
-        "id": "11",
+        "id": 11,
         "german": "die Freude",
         "transcription": "",
         "russian": "Радость",
@@ -88,49 +88,49 @@
         "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
     },
     {
-        "id": "12",
+        "id": 12,
         "german": "das Interesse",
         "russian": "Интерес",
         "tags": "Эмоции",
         "tags_json": "[\"u043au0430u043du0446u0435u043bu044fu0440u0438u044f\"]"
     },
     {
-        "id": "13",
+        "id": 13,
         "german": "die Enkelin",
         "russian": "Внучка",
         "tags": "Семья",
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "14",
+        "id": 14,
         "german": "die Großmutter",
         "russian": "Бабушка",
         "tags": "Семья",
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "15",
+        "id": 15,
         "german": "die Schwester",
         "russian": "Сестра",
         "tags": "Семья",
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "16",
+        "id": 16,
         "german": "der Enkel",
         "russian": "Внук",
         "tags": "Семья",
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "17",
+        "id": 17,
         "german": "der Großvater",
         "russian": "Дедушка",
         "tags": "Семья",
         "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
     },
     {
-        "id": "18",
+        "id": 18,
         "german": "der Sohn",
         "russian": "Сын",
         "tags": "Семья",
