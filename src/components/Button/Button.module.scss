@@ -8,7 +8,7 @@
   width: max-content;
   height: 50px;
   min-width: 200px;
-  margin: 0 auto;
+  // margin: 0 auto;
   padding: 15px;
   @include templates.title-style;
   font-size: 20px;
@@ -16,6 +16,7 @@
   background-color: vars.$ordinary-color;
   border-radius: 15px;
   border: none;
+  outline: none;
   z-index: 10;
   &--delete {
     background-color: vars.$important-color;

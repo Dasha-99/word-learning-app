@@ -33,7 +33,7 @@ export default function TopicsList() {
     };
 
     return (
-        <>
+        <div className={classes.wrapper}>
             <section className={classes.list}>
                 <div className={classes.titles}>
                     <h2 className={classes.title}>Тема</h2>
@@ -50,7 +50,7 @@ export default function TopicsList() {
                 action="Создать новый список"
                 onClick={handleClick}
             />
-        </>
+        </div>
     );
 }
 

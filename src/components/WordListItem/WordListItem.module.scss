@@ -17,10 +17,15 @@
   font-weight: 400;
   border: none;
   border-radius: 20px;
+  outline: none;
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+}
+
+.error {
+  outline: 2px solid #ff0000;
 }

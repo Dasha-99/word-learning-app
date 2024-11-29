@@ -31,24 +31,28 @@ WordListItem.propTypes = {
 };
 
 function EditWordLine(props) {
-    const [inputWord, setWord] = useState(props.word);
-    const [inputTranslation, setTranslation] = useState(props.translation);
+    const [inputWord, setWord] = useState(props.word)
+    const [inputTranslation, setTranslation] = useState(props.translation)
+    const [isInputsError, setIsInputsError] = useState(false)
 
-    const handleSave = (id, newWord, newTranslation) => {
-        props.handleEdit(id, newWord, newTranslation)
-        props.handleState()
+    const handleSave = () => {
+        if (inputWord && inputTranslation) {
+            props.handleEdit(props.id, inputWord, inputTranslation)
+            props.handleState()
+        }
+        else setIsInputsError(true)
     }
     return (
         <>
             <input
-                className={classes.content}
+                className={`${classes.content} ${isInputsError && !inputWord && classes.error}`}
                 value={inputWord}
-                onChange={(evt) => { setWord(evt.target.value) }}
+                onChange={(evt) => { setWord(evt.target.value.trim()) }}
             />
             <input
-                className={classes.content}
+                className={`${classes.content} ${isInputsError && !inputTranslation && classes.error}`}
                 value={inputTranslation}
-                onChange={(evt) => { setTranslation(evt.target.value) }}
+                onChange={(evt) => { setTranslation(evt.target.value.trim()) }}
             />
             <div className={classes.buttons}>
                 <Button
@@ -59,7 +63,7 @@ function EditWordLine(props) {
                 <Button
                     type="confirm"
                     action="Сохранить"
-                    onClick={() => { handleSave(props.id, inputWord, inputTranslation) }}
+                    onClick={handleSave}
                 />
             </div>
         </>

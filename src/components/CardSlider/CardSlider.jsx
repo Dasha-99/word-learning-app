@@ -1,16 +1,29 @@
+
 import propTypes from "prop-types";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 import Button from "../Button/Button";
 import CardItem from "../CardItem/CardItem";
 import classes from "./CardSlider.module.scss";
 
-export default function CardSlider({ cards, indexCard = 0 }) {
-    const [curIndex, setCurIndex] = useState(indexCard)
-    const [isSliderVisible, setDisplaySlider] = useState(true)
+export default function CardSlider(props) {
+    const { cards, setDisplaySlider, studiedWords, setStudiedWords } = props
+
     const [direction, setDirection] = useState('');
-    const [studiedWords, setStudiedWords] = useState([])
-    const navigate = useNavigate();
+    const [curIndex, setCurIndex] = useState(0)
+
+    const handleKeyDown = useCallback((event) => {
+        if (event.key === 'ArrowLeft' && curIndex !== 0)
+            handlePreviousCard()
+        else if (event.key === 'ArrowRight')
+            handleNextCard()
+    }, [curIndex])
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown])
 
     const handleNextCard = () => {
         if (curIndex + 1 === cards.length) {
@@ -32,11 +45,6 @@ export default function CardSlider({ cards, indexCard = 0 }) {
         }
     }
 
-    const handleView = () => {
-        setCurIndex(0)
-        setDisplaySlider(true)
-    }
-
     const setAction = (tempIndex) => {
         if (curIndex === tempIndex && direction)
             return 'in-' + direction
@@ -48,10 +56,6 @@ export default function CardSlider({ cards, indexCard = 0 }) {
         return ''
     }
 
-    const handleChangeTopic = () => {
-        navigate(`/topics`);
-    }
-
     const increaseStudiedWords = () => {
         const isFoundItem = studiedWords.find(item => item === cards[curIndex].id);
         if (!isFoundItem)
@@ -59,66 +63,46 @@ export default function CardSlider({ cards, indexCard = 0 }) {
     }
 
     return (
-        isSliderVisible
-            ?
-            <section className={classes.slider}>
-                <div className={classes.content}>
-                    <Button
-                        type="round"
-                        action="←"
-                        disabled={curIndex === 0}
-                        onClick={handlePreviousCard}
-                    />
-                    <div className={classes.cards}>
-                        {
-                            cards.map((item, itemIndex) => {
-                                return (
-                                    <CardItem
-                                        key={item.id}
-                                        id={item.id}
-                                        word={item["german"]}
-                                        translation={item["russian"]}
-                                        action={setAction(itemIndex)}
-                                        active={itemIndex === curIndex}
-                                        increaseStudiedWords={increaseStudiedWords}
-                                    />
-                                )
-                            })
-                        }
-                    </div>
-                    <Button
-                        type="round"
-                        action="→"
-                        onClick={handleNextCard}
-                    />
+        <section className={classes.slider}>
+            <div className={classes.content}>
+                <Button
+                    type="round"
+                    action="←"
+                    disabled={curIndex === 0}
+                    onClick={handlePreviousCard}
+                />
+                <div className={classes.cards}>
+                    {
+                        cards.map((item, itemIndex) => {
+                            return (
+                                <CardItem
+                                    key={item.id}
+                                    word={item["german"]}
+                                    translation={item["russian"]}
+                                    action={setAction(itemIndex)}
+                                    active={itemIndex === curIndex}
+                                    increaseStudiedWords={increaseStudiedWords}
+                                />
+                            )
+                        })
+                    }
                 </div>
-                <span className={classes.text}>
-                    Изучено слов: {studiedWords.length}/{cards.length}
-                </span>
-            </section>
-            :
-            <section className={classes.message}>
-                <p className={classes.text}>
-                    Вы просмотрели весь список слов
-                </p>
-                <div className={classes.buttons}>
-                    <Button
-                        type="confirm"
-                        action="Просмотреть список слов заново"
-                        onClick={handleView}
-                    />
-                    <Button
-                        action="Выбрать другой список слов"
-                        onClick={handleChangeTopic}
-                    />
-                </div>
-            </section>
-
+                <Button
+                    type="round"
+                    action="→"
+                    onClick={handleNextCard}
+                />
+            </div>
+            <span className={classes.text}>
+                Изучено слов: {studiedWords.length}/{cards.length}
+            </span>
+        </section>
     )
 }
 
 CardSlider.propTypes = {
     cards: propTypes.array,
-    indexCard: propTypes.number
+    setDisplaySlider: propTypes.func,
+    studiedWords: propTypes.array,
+    setStudiedWords: propTypes.func
 };
-

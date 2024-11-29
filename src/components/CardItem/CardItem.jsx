@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import classes from "./CardItem.module.scss";
 
 export default function CardItem({
-    id, word, translation, action, active, increaseStudiedWords = () => { }
+    word, translation, action, active, increaseStudiedWords = () => { }
 }) {
     const [displayTranslation, setTranslation] = useState(false);
     const buttonRef = useRef(null);
@@ -17,13 +17,12 @@ export default function CardItem({
     const handleHideTranslation = () => {
         setTranslation(!displayTranslation)
     }
-
     useEffect(() => {
         setTranslation(false)
-        if (buttonRef.current) {
+        if (buttonRef.current && active) {
             buttonRef.current.focus();
         }
-    }, [id]);
+    }, [active]);
 
     return (
         < div
@@ -68,7 +67,6 @@ function CardContent(props) {
 }
 
 CardItem.propTypes = {
-    id: propTypes.number,
     word: propTypes.string,
     translation: propTypes.string,
     action: propTypes.string,

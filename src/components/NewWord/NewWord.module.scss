@@ -4,6 +4,7 @@
 .form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   border-bottom: 2px solid vars.$border-color;
   padding: 10px 0;
   gap: 10px;
@@ -12,6 +13,7 @@
 .input {
   margin: 0 10px;
   padding: 0 20px;
+  width: 100%;
   @include templates.text-style;
   border: none;
   border-radius: 20px;
@@ -19,4 +21,8 @@
   &::placeholder {
     font-size: 18px;
   }
+}
+
+.error {
+  outline: 2px solid #ff0000;
 }
