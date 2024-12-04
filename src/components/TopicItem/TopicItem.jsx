@@ -1,4 +1,4 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import classes from "./TopicItem.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -42,8 +42,8 @@ export default function TopicItem(props) {
 }
 
 TopicItem.propTypes = {
-    listName: propTypes.string,
-    quantityCards: propTypes.number,
-    date: propTypes.string,
+    listName: PropTypes.string,
+    quantityCards: PropTypes.number,
+    date: PropTypes.string,
 };
 

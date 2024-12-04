@@ -1,5 +1,5 @@
 import { useState } from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import classes from "./NewWord.module.scss";
 
@@ -50,7 +50,7 @@ export default function NewWord({ isTopicNameFilled, handleAddition }) {
 }
 
 NewWord.propTypes = {
-    isTopicNameFilled: propTypes.bool,
-    handleAddition: propTypes.func
+    isTopicNameFilled: PropTypes.bool,
+    handleAddition: PropTypes.func
 }
 

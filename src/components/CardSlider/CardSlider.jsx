@@ -1,5 +1,5 @@
 
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useState, useEffect, useCallback } from "react";
 import Button from "../Button/Button";
 import CardItem from "../CardItem/CardItem";
@@ -101,8 +101,8 @@ export default function CardSlider(props) {
 }
 
 CardSlider.propTypes = {
-    cards: propTypes.array,
-    setDisplaySlider: propTypes.func,
-    studiedWords: propTypes.array,
-    setStudiedWords: propTypes.func
+    cards: PropTypes.array,
+    setDisplaySlider: PropTypes.func,
+    studiedWords: PropTypes.array,
+    setStudiedWords: PropTypes.func
 };

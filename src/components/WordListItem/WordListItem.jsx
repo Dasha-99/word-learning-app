@@ -1,4 +1,4 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Button from "../Button/Button";
 import classes from "./WordListItem.module.scss";
@@ -23,11 +23,11 @@ export default function WordListItem(props) {
 }
 
 WordListItem.propTypes = {
-    id: propTypes.number,
-    word: propTypes.string,
-    translation: propTypes.string,
-    handleDelete: propTypes.func,
-    handleEdit: propTypes.func
+    id: PropTypes.number,
+    word: PropTypes.string,
+    translation: PropTypes.string,
+    handleDelete: PropTypes.func,
+    handleEdit: PropTypes.func
 };
 
 function EditWordLine(props) {
@@ -71,11 +71,11 @@ function EditWordLine(props) {
 }
 
 EditWordLine.propTypes = {
-    id: propTypes.number,
-    word: propTypes.string,
-    translation: propTypes.string,
-    handleEdit: propTypes.func,
-    handleState: propTypes.func
+    id: PropTypes.number,
+    word: PropTypes.string,
+    translation: PropTypes.string,
+    handleEdit: PropTypes.func,
+    handleState: PropTypes.func
 }
 
 function DisplayWordLine(props) {
@@ -104,9 +104,9 @@ function DisplayWordLine(props) {
 }
 
 DisplayWordLine.propTypes = {
-    id: propTypes.number,
-    word: propTypes.string,
-    translation: propTypes.string,
-    handleDelete: propTypes.func,
-    handleState: propTypes.func
+    id: PropTypes.number,
+    word: PropTypes.string,
+    translation: PropTypes.string,
+    handleDelete: PropTypes.func,
+    handleState: PropTypes.func
 }

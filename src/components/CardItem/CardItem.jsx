@@ -1,4 +1,4 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useEffect, useState, useRef } from "react";
 import Button from "../Button/Button";
 import classes from "./CardItem.module.scss";
@@ -9,14 +9,15 @@ export default function CardItem({
     const [displayTranslation, setTranslation] = useState(false);
     const buttonRef = useRef(null);
 
-    const handleShowTranslation = () => {
+    const validActions = ['in-right', 'in-left', 'out-right', 'out-left', 'in-bottom', 'out-bottom']
+    const isValidAction = validActions.includes(action)
+
+    const handleTranslation = () => {
         setTranslation(!displayTranslation)
-        increaseStudiedWords()
+        if (!displayTranslation)
+            increaseStudiedWords()
     }
 
-    const handleHideTranslation = () => {
-        setTranslation(!displayTranslation)
-    }
     useEffect(() => {
         setTranslation(false)
         if (buttonRef.current && active) {
@@ -28,20 +29,20 @@ export default function CardItem({
         < div
             className={`${classes["card-container"]} 
                 ${active && classes["card-container--active"]} 
-                ${action && classes["card-container--" + action]}`}
+                ${isValidAction && classes["card-container--" + action]}`}
         >
             <CardContent
                 typeCard={!displayTranslation ? classes["card--front"] : classes["card--back"]}
                 cardWord={word}
                 buttonAction="Показать перевод"
-                onClick={handleShowTranslation}
+                onClick={handleTranslation}
                 buttonRef={buttonRef}
             />
             <CardContent
                 typeCard={displayTranslation ? classes["card--front"] : classes["card--back"]}
                 cardWord={translation}
                 buttonAction="Назад"
-                onClick={handleHideTranslation}
+                onClick={handleTranslation}
             />
 
         </div>
@@ -67,17 +68,17 @@ function CardContent(props) {
 }
 
 CardItem.propTypes = {
-    word: propTypes.string,
-    translation: propTypes.string,
-    action: propTypes.string,
-    active: propTypes.bool,
-    increaseStudiedWords: propTypes.func
+    word: PropTypes.string,
+    translation: PropTypes.string,
+    action: PropTypes.string,
+    active: PropTypes.bool,
+    increaseStudiedWords: PropTypes.func
 };
 
 CardContent.propTypes = {
-    typeCard: propTypes.string,
-    cardWord: propTypes.string,
-    buttonAction: propTypes.string,
-    onClick: propTypes.func,
-    buttonRef: propTypes.object
+    typeCard: PropTypes.string,
+    cardWord: PropTypes.string,
+    buttonAction: PropTypes.string,
+    onClick: PropTypes.func,
+    buttonRef: PropTypes.object
 };
