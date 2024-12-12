@@ -1,10 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import WordListItem from "../WordListItem/WordListItem";
 import NewWord from "../NewWord/NewWord";
-import wordsJson from "../../data/words.json";
 import classes from "./WordList.module.scss";
 import Button from "../Button/Button";
+import { WordsContext } from "../../context/WordsContext";
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
 
 export default function WordList() {
     const { topicId } = useParams()
@@ -13,20 +15,21 @@ export default function WordList() {
     const [topicNameInput, setTopicNameInput] = useState('')
     const [errorTopicName, setErrorTopicName] = useState(false)
     const navigate = useNavigate();
-    const [words, setWords] = useState(
-        wordsJson.filter((item) => item.tags === topicName)
+
+    const { words, loading, error, addWord } = useContext(WordsContext);
+    const [filterWords, setFilterWords] = useState(
+        words.filter((item) => item.tags === topicName)
     )
+
     useEffect(() => {
-        setTopicName(topicId)
-        setWords(wordsJson.filter(item => item.tags === topicId))
-    }, [topicId])
+        setFilterWords(words.filter(item => item.tags === topicName))
+    }, [words, topicName])
 
 
-    const getIsTopicNameFilled = () => {
+    const isTopicNameFilled = () => {
         return ((topicName === 'new' && topicNameInput) || (topicName !== 'new'))
             ? true
             : false
-
     }
 
     const handleTopicNameInput = (evt) => {
@@ -34,38 +37,20 @@ export default function WordList() {
         setErrorTopicName(false)
     }
 
-    const handleDelete = (id) => {
-        setWords(words.filter((item) => item.id !== id))
-        console.log('Слово удалено')
-    }
-
-    const handleEdit = (id, newWord, newTranslation) => {
-        setWords(words.map((item) => {
-            if (item.id === id) {
-                item.german = newWord
-                item.russian = newTranslation
-            }
-            return item
-        }))
-        console.log('Слово отредактировано', words.filter((item) => item.id === id)[0])
-
-    }
     const handleAddition = (word, translation) => {
-        if (!getIsTopicNameFilled()) {
+        if (!isTopicNameFilled()) {
             setErrorTopicName(true)
             return
         }
         if (word && translation) {
             if (topicName === 'new') setTopicName(topicNameInput)
             const newWordInfo = {
-                "id": Date.now(),
+                "id": String(Date.now()),
                 "german": word,
                 "russian": translation,
-                "tags": topicName,
-                "tags_json": "[??]"
+                "tags": topicName !== 'new' ? topicName : topicNameInput
             }
-            setWords([...words, newWordInfo])
-            console.log('Слово добавлено', newWordInfo)
+            addWord(newWordInfo)
         }
     }
 
@@ -73,10 +58,22 @@ export default function WordList() {
         navigate(`/game/${topicName}`);
     };
 
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
+    if (error) {
+        return (
+            <Error />
+        )
+    }
+
     return (
         <>
             <div className={classes.wrapper}>
                 {
+
                     topicName !== 'new' ?
                         <h2 className={classes.title}>
                             Слова по теме:&nbsp;
@@ -98,7 +95,7 @@ export default function WordList() {
                 <Button
                     type="confirm"
                     action="Тренировать"
-                    disabled={words.length === 0}
+                    disabled={filterWords.length === 0}
                     onClick={handleClickTrainig}
                 />
             </div>
@@ -108,18 +105,17 @@ export default function WordList() {
                     <h2 className={classes.title}>Перевод</h2>
                     <h2 className={classes.title}>Редактирование</h2>
                 </div>
-                <NewWord isTopicNameFilled={getIsTopicNameFilled()} handleAddition={handleAddition} />
+                <NewWord isTopicNameFilled={isTopicNameFilled()} handleAddition={handleAddition} />
                 <div className={classes.content}>
                     {
-                        words.slice().reverse().map((item) => {
+                        filterWords.slice().reverse().map((item) => {
                             return (
                                 <WordListItem
                                     key={item.id}
                                     id={item.id}
                                     word={item.german}
                                     translation={item.russian}
-                                    handleDelete={handleDelete}
-                                    handleEdit={handleEdit}
+                                    tag={topicName}
                                 />
                             );
                         })

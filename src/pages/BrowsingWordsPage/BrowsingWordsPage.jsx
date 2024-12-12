@@ -1,9 +1,11 @@
-import wordsJson from "../../data/words.json";
 import CardSlider from "../../components/CardSlider/CardSlider";
 import Button from "../../components/Button/Button";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import classes from "./BrowsingWordsPage.module.scss"
+import { useState, useContext } from "react";
+import classes from "./BrowsingWordsPage.module.scss";
+import { WordsContext } from "../../context/WordsContext";
+import Loading from "../../components/Loading/Loading";
+import Error from "../../components/Error/Error";
 
 export default function BrowsingWordsPage() {
     const { topicId } = useParams()
@@ -11,10 +13,13 @@ export default function BrowsingWordsPage() {
 
     const [isSliderVisible, setDisplaySlider] = useState(true)
     const [studiedWords, setStudiedWords] = useState([])
+
+    const { words, loading, error } = useContext(WordsContext);
+
     const cards = getWordList(topicId)
 
     function getWordList(topic) {
-        return wordsJson.filter((word) => word.tags === topic)
+        return words.filter((word) => word.tags === topic)
     };
 
     const handleView = () => {
@@ -23,6 +28,17 @@ export default function BrowsingWordsPage() {
 
     const handleChangeTopic = () => {
         navigate(`/topics`);
+    }
+
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
+    if (error) {
+        return (
+            <Error />
+        )
     }
 
     return (

@@ -1,12 +1,15 @@
 import ListItem from "../TopicItem/TopicItem";
 import Button from "../Button/Button";
-import wordsJson from "../../data/words.json";
 import classes from "./TopicList.module.scss";
 import { useNavigate } from "react-router-dom";
+import { WordsContext } from '../../context/WordsContext'
+import { useContext } from "react"
+import Loading from "../Loading/Loading";
+import Error from "../Loading/Loading"
 
 export default function TopicsList() {
     const navigate = useNavigate();
-
+    const { words, loading, error } = useContext(WordsContext);
     const handleClick = () => {
         const idNewList = 'new'
         navigate(`/topics/${idNewList}`);
@@ -14,7 +17,7 @@ export default function TopicsList() {
 
     const getWordList = () => {
         let wordTopics = {};
-        wordsJson.forEach(
+        words.forEach(
             (word) =>
             (wordTopics[word.tags] = wordTopics[word.tags]
                 ? (wordTopics[word.tags] += 1)
@@ -31,6 +34,18 @@ export default function TopicsList() {
             );
         });
     };
+
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
+
+    if (error) {
+        return (
+            <Error />
+        )
+    }
 
     return (
         <div className={classes.wrapper}>

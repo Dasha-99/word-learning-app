@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Button from "../Button/Button";
+import Error from "../Error/Error"
+import { WordsContext } from "../../context/WordsContext";
 import classes from "./WordListItem.module.scss";
 
 export default function WordListItem(props) {
@@ -23,25 +25,38 @@ export default function WordListItem(props) {
 }
 
 WordListItem.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.string,
     word: PropTypes.string,
     translation: PropTypes.string,
-    handleDelete: PropTypes.func,
-    handleEdit: PropTypes.func
+    tag: PropTypes.string
 };
 
 function EditWordLine(props) {
     const [inputWord, setWord] = useState(props.word)
     const [inputTranslation, setTranslation] = useState(props.translation)
     const [isInputsError, setIsInputsError] = useState(false)
+    const { error, updateWord } = useContext(WordsContext);
 
     const handleSave = () => {
         if (inputWord && inputTranslation) {
-            props.handleEdit(props.id, inputWord, inputTranslation)
+            const editWord = {
+                "id": props.id,
+                "german": inputWord,
+                "russian": inputTranslation,
+                "tags": props.tag
+            }
+            updateWord(props.id, editWord)
             props.handleState()
         }
         else setIsInputsError(true)
     }
+
+    if (error) {
+        return (
+            <Error />
+        )
+    }
+
     return (
         <>
             <input
@@ -71,14 +86,23 @@ function EditWordLine(props) {
 }
 
 EditWordLine.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.string,
     word: PropTypes.string,
     translation: PropTypes.string,
+    tag: PropTypes.string,
     handleEdit: PropTypes.func,
     handleState: PropTypes.func
 }
 
 function DisplayWordLine(props) {
+    const { error, deleteWord } = useContext(WordsContext);
+
+    if (error) {
+        return (
+            <Error />
+        )
+    }
+    
     return (
         <>
             <p className={classes.content}>
@@ -96,7 +120,7 @@ function DisplayWordLine(props) {
                 <Button
                     type="delete"
                     action="Удалить"
-                    onClick={() => { props.handleDelete(props.id) }}
+                    onClick={() => { deleteWord(props.id) }}
                 />
             </div>
         </>
@@ -104,7 +128,7 @@ function DisplayWordLine(props) {
 }
 
 DisplayWordLine.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.string,
     word: PropTypes.string,
     translation: PropTypes.string,
     handleDelete: PropTypes.func,

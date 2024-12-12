@@ -1,18 +1,22 @@
 import classes from "./TrainingComponent.module.scss"
-import wordsJson from "../../data/words.json"
 import { useParams } from "react-router-dom";
 import CardItem from "../CardItem/CardItem";
 import Button from "../Button/Button";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { WordsContext } from "../../context/WordsContext";
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
+
 
 export default function TrainingComponent() {
     const [curIndex, setCurIndex] = useState(0)
     const [knownQuantity, setKnownQuantity] = useState(0)
     const [repeatQuantity, setRepeatQuantity] = useState(0)
     const [studyQuantity, setStudyQuantity] = useState(0)
+    const { words, loading, error } = useContext(WordsContext);
 
     const getWordList = (topic) => {
-        return wordsJson.filter((word) => word.tags === topic)
+        return words.filter((word) => word.tags === topic)
     };
 
     const { topicName } = useParams()
@@ -43,6 +47,17 @@ export default function TrainingComponent() {
             return 'out-bottom'
 
         return ''
+    }
+
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
+    if (error) {
+        return (
+            <Error/>
+        )
     }
 
     return (
