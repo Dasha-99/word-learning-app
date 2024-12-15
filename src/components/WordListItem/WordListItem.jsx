@@ -102,7 +102,7 @@ function DisplayWordLine(props) {
             <Error />
         )
     }
-    
+
     return (
         <>
             <p className={classes.content}>
@@ -131,6 +131,5 @@ DisplayWordLine.propTypes = {
     id: PropTypes.string,
     word: PropTypes.string,
     translation: PropTypes.string,
-    handleDelete: PropTypes.func,
     handleState: PropTypes.func
 }
