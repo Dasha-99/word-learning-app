@@ -11,4 +11,12 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    proxy: {
+      "/words": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+    },
+  },
 });

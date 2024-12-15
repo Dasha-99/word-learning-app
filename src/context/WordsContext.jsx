@@ -7,11 +7,10 @@ export default function WordsContextProvider({ children }) {
     const [words, setWords] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const databaseAddress = 'http://localhost:3001'
 
     async function fetchWords() {
         try {
-            fetch(`${databaseAddress}/words`)
+            fetch('/words')
                 .then(response => {
                     if (response.ok)
                         return response.json()
@@ -29,7 +28,7 @@ export default function WordsContextProvider({ children }) {
 
     async function deleteWord(id) {
         try {
-            const response = await fetch(`${databaseAddress}/words/${id}`, {
+            const response = await fetch(`/words/${id}`, {
                 method: "DELETE",
             });
             if (response.ok) {
@@ -44,9 +43,9 @@ export default function WordsContextProvider({ children }) {
     }
 
     async function updateWord(id, updateWord) {
-        
+
         try {
-            const response = await fetch(`${databaseAddress}/words/${id}`, {
+            const response = await fetch(`/words/${id}`, {
                 method: "PUT",
                 body: JSON.stringify(updateWord),
                 headers: {
@@ -69,7 +68,7 @@ export default function WordsContextProvider({ children }) {
 
     async function addWord(newWord) {
         try {
-            const response = await fetch(`${databaseAddress}/words`, {
+            const response = await fetch('/words', {
                 method: "POST",
                 body: JSON.stringify(newWord),
                 headers: {
